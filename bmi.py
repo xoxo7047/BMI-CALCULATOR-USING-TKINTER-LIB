@@ -4,18 +4,19 @@ from tkinter import ttk
 
 
 def calculate():
-	if patname_entry.get()=="" or patage_entry.get()=="" or gen_entry.get() or patweight_entry.get()=="" or patheight_entry.get()=="":
-		messagebox.showerror("INVALID ENTRY","ENTER ALL FIELD")
-	else:
-		kg = patweight_entry.get()
-		mt = patheight_entry.get()
-		result = int(kg)/ int(mt)*int(mt)	
-		listbox.insert(END,(patname_entry.get(),patage_entry.get(),gen_entry.get(),(str(result)+'kg/m2')))
+	if patname_entry.get()=="" or patage_entry.get()=="" or gen_entry.get()=="" or patweight_entry.get()=="" or patheight_entry.get()=="":
+		messagebox.showerror("INVALID ENTRY"," PLEASE ENTER ALL FIELDS")
 
-	if patweight_entry.get()==str(patweight_entry.get()) or patheight_entry.get()== str(patheight_entry.get()):
-		messagebox.showerror("INVALID ENTRY","ENTER NUMBER IN WEIGHT AND HEIGHT")
-	
+	elif patweight_entry.get() == str(patweight_entry.get()) or patheight_entry.get()==str(patheight_entry.get()):
 		
+		messagebox.showerror("ERROR","ENTER A NUMBER")
+
+	else:
+		kg = float(patweight_entry.get())
+		mt = float( patheight_entry.get())
+		result = kg/mt**2	
+		listbox.insert(END,(patname_entry.get(),patage_entry.get(),gen_entry.get(),(str(result)+' kg/m2')))	
+	
 
 def clear():
 	patname_entry.delete(0,END)
@@ -70,7 +71,7 @@ patheight_label = Label(root,
 	font=("Times",12),
 	fg="#000000")
 patheight_label.grid(row = 2, column = 0, pady = 15,padx = 15)
-patheight = IntVar()
+patheight = DoubleVar()
 patheight_entry = Entry(root, 
 	width=20, 
 	textvariable= patheight,
@@ -84,7 +85,7 @@ patweight_label = Label(root,
 	font=("Times",12),
 	fg="#000000")
 patweight_label.grid(row = 3, column = 0, pady = 15,padx = 15)
-patweight = IntVar()
+patweight = DoubleVar()
 patweight_entry = Entry(root, 
 	width=20, 
 	textvariable= patweight,
