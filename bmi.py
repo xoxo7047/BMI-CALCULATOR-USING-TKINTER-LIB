@@ -7,15 +7,12 @@ def calculate():
 	if patname_entry.get()=="" or patage_entry.get()=="" or gen_entry.get()=="" or patweight_entry.get()=="" or patheight_entry.get()=="":
 		messagebox.showerror("INVALID ENTRY"," PLEASE ENTER ALL FIELDS")
 
-	elif patweight_entry.get() == str(patweight_entry.get()) or patheight_entry.get()==str(patheight_entry.get()):
-		
-		messagebox.showerror("ERROR","ENTER A NUMBER")
 
 	else:
 		kg = float(patweight_entry.get())
 		mt = float( patheight_entry.get())
 		result = kg/mt**2	
-		listbox.insert(END,(patname_entry.get(),patage_entry.get(),gen_entry.get(),(str(result)+' kg/m2')))	
+		listbox.insert(END,(patname_entry.get(),"-",patage_entry.get(),"-",gen_entry.get(),"-BMI->",(str(result)+' kg/m2')))	
 	
 
 def clear():
@@ -112,7 +109,7 @@ clear_inp = Button(root, text= 'DELETE BMI', command = delete,relief=GROOVE)
 clear_inp.grid(row = 6, column =2)
 
 #listbox 
-listbox = Listbox(root, width = 40, height = 8)
+listbox = Listbox(root, width = 50, height = 8)
 listbox.grid(row = 6, column= 1)
 
 
